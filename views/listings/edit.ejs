@@ -1,0 +1,44 @@
+<% layout("layouts/boilerplate") %>
+<body>
+    <div style="z-index: 200; position: relative; color: #fff;">
+        <h2 style="width: 100%; display: flex; justify-content: center; align-items: center;">Edit Listing</h2>
+    <form action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation edit-wrapper" novalidate method="post" enctype="multipart/form-data">
+        <div>
+            <label for="title" class="form-label">Title</label>
+            <input class="form-control" name="listing[title]" type="text" value="<%= listing.title %>" required><br>
+            <div class="valid-feedback">Title looks good!</div>
+        </div>
+        <div>
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="listing[description]" type="text" rows="3" required><%= listing.description %></textarea><br>
+            <div class="invalid-feedback">Please enter a short description!</div>
+        </div>
+        <div>
+            <label for="image" class="form-label">Upload New Image (Optional)</label>
+            <input class="form-control" name="listing[image]" type="file">
+            <br>
+        </div>
+        <div class="price-location">
+            <div>
+                <label for="price" class="form-label">Price</label>
+                <input class="form-control" name="listing[price]" value="<%= listing.price %>" required><br>
+                <div class="invalid-feedback">Price should be valid!</div>
+            </div>
+            <div>
+                <label for="location" class="form-label">Location</label>
+                <input class="form-control" name="listing[location]" type="text" value="<%= listing.location %>" required>
+                <div class="invalid-feedback">Location should be valid!</div>
+            </div>
+        </div>
+        <div>
+            <label for="country" class="form-label">Country</label>
+            <input class="form-control" name="listing[country]" type="text" value="<%= listing.country %>" required><br>
+            <div class="invalid-feedback">Country name should be valid!</div>
+        </div>
+        <div class="submit-btn-wrapper">
+            <button class="submit-button" style="background-color: red; color: #fff;">Submit</button>
+        </div>
+
+    </form>
+    </div>
+</body>

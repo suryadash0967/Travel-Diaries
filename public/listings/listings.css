@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: Poppins;
+    margin: 0;
+    padding: 0;
+}
+
+.all-listings-wrapper{
+    border: none;
+}
+
+.all-listings-wrapper a{
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.all-listings-wrapper figcaption a{
+    text-decoration: none;
+    color: #000;
+}
+.all-listings-wrapper figcaption p{
+    font-size: 16px;
+    font-weight: 500;
+    color: grey;
+}
+
+figure{
+    
+}
+
+/* .all-listings-wrapper figure img{
+    width: 100% !important;
+    object-fit: cover;
+    border-radius: 15px;
+} */
+
+.all-listings-wrapper button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.navbar-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Cards */
+.card {
+    border: none !important;
+}
+
+.card-body{
+    border: none !important;
+}

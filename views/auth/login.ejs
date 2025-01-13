@@ -1,0 +1,23 @@
+<% layout("layouts/boilerplate") %>
+
+<body>
+    <div class="signup-wrapper" style="z-index: 200; position: relative; color: #fff;">
+        <h2>LogIn to Travel Diaries</h2>
+        <br>
+        <form class="create-new-wrapper needs-validation" novalidate action="/login" method="post">
+            <div>
+                <label for="username" class="form-label">Username</label>
+                <input name="username" type="text" class="form-control" placeholder="enter username" required>
+            </div>
+            <br>
+            <div>
+                <label for="password" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" placeholder="enter password" required>
+            </div>
+            <br>
+            <button class="btn btn-success" style="border: none; outline: none; color: #fff; padding: 6px 10px; border-radius: 10px; text-decoration: none;">
+                LogIn
+            </button>
+        </form>
+    </div>
+</body>
