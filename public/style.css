@@ -19,26 +19,25 @@ body {
 
 /* Target the scrollbar */
 ::-webkit-scrollbar {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 10px;
 }
 
 /* Style the scrollbar track (background) */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
+    background: rgba(0,74,62,1);
 }
 
 /* Style the scrollbar thumb (draggable part) */
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: rgba(2,0,34,1);
     border-radius: 10px;
 }
 
 /* Hover effect for the scrollbar thumb */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: rgba(2,0,34,1);
 }
 
 .container {
@@ -663,7 +662,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: auto;
-    backdrop-filter: blur(3px);
+    /* backdrop-filter: blur(0px); */
     background: rgba(255, 255, 255, 0.2);
     padding: 2rem;
     border-radius: 20px;
