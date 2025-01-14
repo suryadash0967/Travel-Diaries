@@ -21,8 +21,10 @@
 
 <% layout("layouts/boilerplate") %>
 <body>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
+  <spline-viewer loading-anim-type="spinner-small-light" url="https://prod.spline.design/tUwuVpMr-FzaJ6q9/scene.splinecode"></spline-viewer>
   <div class="listing-details-wrapper">
-    <div class="details-part-wrapper">
+    <div class="details-part-wrapper" style="user-select: none; pointer-events: none;">
       <h4><%= listing.title %></h4>
       <div class="listing-desc">
         <div class="image-div">

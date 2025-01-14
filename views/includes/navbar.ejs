@@ -18,15 +18,20 @@
   <div class="navbar-wrapper">
     <a class="logo-icon" href="/listings">
       <i class="fa-regular fa-compass"></i>&nbsp;
-      <span>Travel Diaries</span>
+      <span>Travel</span>
+      &nbsp;
+      <span>Diaries</span>
     </a>
     <div class="search-listing-wrapper">
       <form action="/listings/search" method="get">
-        <input type="text" name="q" id="query" class="search-listing-input" placeholder="Search for a listing or a region">
+        <input type="text" name="q" id="query" class="search-listing-input" placeholder="search for a region or user">
         <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
     <div class="navigations">
+      <div>
+        <a href="/about">About Us</a>
+      </div>
       <div>
         <a href="/listings/new">Share your experiences</a>
       </div>
@@ -44,7 +49,8 @@
     </div>
   </div>
   <div class="dropdown-menu">
-    <a href="/listings/new" onclick="closeMenu()">Airbnb your home</a>
+    <a href="/about" onclick="closeMenu()">About Us</a>
+    <a href="/listings/new" onclick="closeMenu()">Share your experiences</a>
     <% if(!currUser) { %>
       <a href="/signup" onclick="closeMenu()">SignUp</a>
       <a href="/login" onclick="closeMenu()">LogIn</a>
@@ -53,7 +59,9 @@
       <% } %>
       <a style="color: #ff0000; font-weight: 600; font-size: 20px;" href="/listings" onclick="closeMenu()">
         <i class="fa-regular fa-compass"></i>&nbsp;
-        Travel Diaries
+        <span>Travel</span>
+        <!-- &nbsp; -->
+        <span>Diaries</span>
       </a>
   </div>
 </nav>

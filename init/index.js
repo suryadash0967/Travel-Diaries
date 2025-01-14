@@ -12,7 +12,7 @@ async function main() {
 
 let initDB = async () => {
     await Listing.deleteMany({});
-    initData.data = initData.data.map((listing) => ({...listing, owner: "677fc1d8652d4c01df09677a"}));
+    initData.data = initData.data.map((listing) => ({...listing, owner: "6784c7c56e8c3ce8e7460456"}));
     await Listing.insertMany(initData.data);
     console.log("database working");
 }

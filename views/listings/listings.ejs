@@ -1,5 +1,7 @@
 <% layout("layouts/boilerplate") %>
 <body>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
+    <spline-viewer loading-anim-type="spinner-small-light" url="https://prod.spline.design/tUwuVpMr-FzaJ6q9/scene.splinecode"></spline-viewer>
     <div class="all-listings-wrapper">
         <% for(let listing of allListings) { %>
           <div data-aos="zoom-out-up" style="display: flex; align-self: center; align-items: center; justify-content: center; width: min-content;">
@@ -7,11 +9,14 @@
               <div class="card" style="width: min-content; border: none;">
                 <img src="<%= listing.image.url %>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h6 class="card-title"><%= listing.title %></h6>
+                  <h6 class="card-title">Title</h6>
                   <div style="display: flex; flex-direction: column;">
-                    <p>&#8377; <%= listing.price %>/night</p>
-                    <p><%= listing.location %>, <%= listing.country %></p>
+                    <p class="card-text">
+                      <i class="fa-solid fa-user"></i>
+                      <span><%= listing.owner.username %></span>
+                    </p>
                   </div>
+                  <p class="card-text">Location</p>
                 </div>
               </div>
             </a>

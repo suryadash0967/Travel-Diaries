@@ -19,7 +19,11 @@ router.post("/login",
 
     WrapAsync(usersControllers.handleLogIn)
 );
-router.get("/logout", usersControllers.handleLogOut)
+router.get("/logout", usersControllers.handleLogOut);
+
+router.get("/about", (req, res) => {
+    res.render("about/about.ejs");
+})
 
 
 module.exports = router;
