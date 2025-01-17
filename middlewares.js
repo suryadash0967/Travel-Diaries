@@ -13,7 +13,6 @@ module.exports.validateUUID = (req, res, next) => {
 };
 
 module.exports.validateListing = (req, res, next) => {
-    console.log(req.body)
     let {error} = listingSchema.validate(req.body);
     if(error) {
         let errMsg = error.details.map(el => el.message).join(","); // joins all error messages
@@ -71,7 +70,6 @@ module.exports.isOwner = async (req, res, next) => {
 module.exports.isReviewAuthor = async (req, res, next) => {
     let {id, reviewId} = req.params;
     let review = await Review.findById(reviewId);
-    console.log(res.locals.currUser);
     if(res.locals.currUser && !res.locals.currUser._id.equals(review.author)) {
         req.flash("error", "You don't have the permission!");
         return res.redirect(`/listings/${id}`);

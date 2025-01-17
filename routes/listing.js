@@ -27,6 +27,12 @@ router.get("/search",
     WrapAsync(listingControllers.renderShortlistedPage)
 );
 
+router.delete("/:id/:index",
+    isLoggedIn,
+    isOwner,
+    WrapAsync(listingControllers.handleImageDelete)
+);
+
 
 router.route("/:id")
 .get(

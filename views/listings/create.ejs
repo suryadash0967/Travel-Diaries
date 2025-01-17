@@ -1,3 +1,12 @@
+<script>
+    let handleSubmit = (event) => {
+        // Ensure the form submits
+        const form = event.target.closest("form"); // Get the parent form
+        event.target.disabled = true; // Disable the button
+        form.submit(); // Submit the form manually
+    };
+</script>
+
 <% layout("layouts/boilerplate") %>
 
     <body>
@@ -62,7 +71,7 @@
                 </div>
                 <br>
                 <div class="submit-btn-wrapper">
-                    <button type="submit" class="btn btn-outline-light">Submit</button>
+                    <button type="submit" class="btn btn-outline-light" onclick="handleSubmit(event)">Submit</button>
                 </div>
             </form>
         </div>

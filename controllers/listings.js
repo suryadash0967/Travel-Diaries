@@ -27,7 +27,6 @@ module.exports.showListing = async (req, res) => {
 }
 
 module.exports.createNewListing = async (req, res, next) => {
-    console.log(req.body.listing);
     let images = req.files.map(file => ({
         url: file.path,
         filename: file.filename,
@@ -37,7 +36,7 @@ module.exports.createNewListing = async (req, res, next) => {
         images = images.slice(0, 15); // Keep only the first 15 images
         req.flash("error", "You uploaded too many images! Only the first 15 were saved.");
     } else {
-        req.flash("success", "New Post Created!");
+        req.flash("success", `New Post Created!`);
     }
 
     const listing = new Listing({
@@ -47,7 +46,7 @@ module.exports.createNewListing = async (req, res, next) => {
     });
 
     await listing.save();
-    res.redirect("/listings");
+    res.redirect(`/listings/${listing._id}`);
 };
 
 
@@ -154,6 +153,37 @@ module.exports.renderShortlistedPage = async (req, res) => {
     }
 }
 
+module.exports.handleImageDelete = async (req, res) => {
+    let {id, index} = req.params;
+    index = parseInt(index, 10);
+    let listing = await Listing.findById(id);
 
+    if (!listing) {
+        req.flash("error", "Listing not found!");
+        return res.redirect("/listings");
+    }
+
+    if(listing.images.length === 1) {
+        req.flash("error", "Edit and add another image before deleting this last image.");
+        return res.redirect(`/listings/${id}`);
+    }
+    
+
+    if (listing.images.length > index) {
+        let image = listing.images[index];
+
+        try {
+            await cloudinary.uploader.destroy(image.filename.split('.')[0]);
+        } catch (err) {
+            console.error(`Failed to delete image: ${image.filename}`, err);
+        }
+    }
+    let images = listing.images.filter((image, idx) => idx != index);
+    listing.images = images;
+
+    await listing.save();
+    req.flash("success", "Image deleted successfully !")
+    res.redirect(`/listings/${id}`);
+}
 
 
