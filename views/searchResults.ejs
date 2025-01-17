@@ -19,15 +19,17 @@
   </div>
   <br>
   <div class="alert alert-success alert-dismissible fade show" role="alert" style="width: 100%; text-align: center;">
-    <div>Showing results for "<%= q %>"</div>
+    <div>Showing results for 
+      "<% if(q && category) { %><%= q %> + <%= category %><% } else if(q) { %><%= q %><% } else if(category) { %><%= category %><% } %>"
+    </div>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-  <div class="all-listings-wrapper">
+  <div class="all-listings-wrapper" style="z-index: 200; position: relative; color: #fff;">
     <% if (filteredListings && filteredListings.length) { %>
       <% for(let listing of filteredListings) { %>
         <a href="/listings/<%= listing._id %>">
           <div class="card" style="width: min-content; border: none">
-            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing image" />
+            <img src="<%= listing.images[0].url %>" class="card-img-top" alt="listing image" />
             <div class="card-body">
               <h6 class="card-title"><%= listing.title %></h6>
               <div style="display: flex; flex-direction: column">
@@ -38,8 +40,8 @@
           </div>
         </a>
         <% } %>
-    <% } if(filteredListings.length === 0) { %>
-      <h5 style="margin-top: 1rem;">No such listing found!</h5>
+      <% } if(filteredListings.length === 0) { %>
+      <h5 style="margin: 1rem auto;  position: relative; left: 50%;">No such listing found!</h5>
       <% } %>
   </div>
 </body>

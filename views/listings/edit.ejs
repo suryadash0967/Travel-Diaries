@@ -1,7 +1,7 @@
 <% layout("layouts/boilerplate") %>
 <body>
     <div style="z-index: 200; position: relative; color: #fff;">
-        <h2 style="width: 100%; display: flex; justify-content: center; align-items: center;">Edit Listing</h2>
+        <h2 style="width: 100%; display: flex; justify-content: center; align-items: center;">Edit Post</h2>
     <form action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation edit-wrapper" novalidate method="post" enctype="multipart/form-data">
         <div>
             <label for="title" class="form-label">Title</label>
@@ -14,20 +14,20 @@
             <div class="invalid-feedback">Please enter a short description!</div>
         </div>
         <div>
-            <label for="image" class="form-label">Upload New Image (Optional)</label>
+            <label for="image" class="form-label">Upload New Images (Optional)</label>
             <input class="form-control" name="listing[image]" type="file">
             <br>
         </div>
         <div class="price-location">
             <div>
-                <label for="price" class="form-label">Price</label>
+                <label for="price" class="form-label">Estimated Cost</label>
                 <input class="form-control" name="listing[price]" value="<%= listing.price %>" required><br>
-                <div class="invalid-feedback">Price should be valid!</div>
+                <div class="invalid-feedback">Cost should be valid!</div>
             </div>
             <div>
-                <label for="location" class="form-label">Location</label>
+                <label for="location" class="form-label">City</label>
                 <input class="form-control" name="listing[location]" type="text" value="<%= listing.location %>" required>
-                <div class="invalid-feedback">Location should be valid!</div>
+                <div class="invalid-feedback">City should be valid!</div>
             </div>
         </div>
         <div>

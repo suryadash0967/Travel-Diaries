@@ -7,32 +7,35 @@
                 enctype="multipart/form-data">
                 <div>
                     <label for="title" class="form-label">Title</label>
+                    <p>(Name of place, fest, etc.)</p>
                     <input name="listing[title]" type="text" class="form-control" placeholder="enter title" required>
                     <div class="valid-feedback">Title looks good!</div>
                 </div>
                 <br>
                 <div>
-                    <label for="description" class="form-label">Description</label>
+                    <label for="description" class="form-label">Personal Experience</label>
+                    <p>(Try including the type of place, your personal experience, must try activities, best local foods to have and if the trip is good for solo, couple or group travelling)</p>
                     <textarea name="listing[description]" type="text" class="form-control"
                         placeholder="enter description" required></textarea>
                     <div class="invalid-feedback">Please enter a short description!</div>
                 </div>
                 <br>
                 <div>
-                    <label for="image" class="form-label">Upload Listing Image</label>
-                    <input name="listing[image]" type="file" class="form-control"><br>
+                    <label for="image" class="form-label">Upload Images</label>
+                    <p>(Max Number : 15, Max Size : 10MB)</p>
+                    <input name="listing[images]" type="file" class="form-control" multiple><br>
                 </div>
                 <div class="price-location">
                     <div>
-                        <label for="price" class="form-label">Price</label>
-                        <input name="listing[price]" class="form-control" placeholder="enter price" required>
-                        <div class="invalid-feedback">Price should be valid!</div>
+                        <label for="price" class="form-label">Estimated Cost</label>
+                        <input name="listing[price]" class="form-control" placeholder="enter cost" required>
+                        <div class="invalid-feedback">Cost should be valid!</div>
                     </div>
                     <div>
-                        <label for="location" class="form-label">Location</label>
-                        <input name="listing[location]" type="text" class="form-control" placeholder="enter location"
+                        <label for="location" class="form-label">City</label>
+                        <input name="listing[location]" type="text" class="form-control" placeholder="enter city"
                             required>
-                        <div class="invalid-feedback">Location should be valid!</div>
+                        <div class="invalid-feedback">City should be valid!</div>
                     </div>
                 </div>
                 <br>
@@ -41,6 +44,21 @@
                     <input name="listing[country]" type="text" class="form-control" placeholder="enter country"
                         required>
                     <div class="invalid-feedback">Country name should be valid!</div>
+                </div>
+                <br>
+                <label for="floatingSelect">Select a category</label>
+                <div class="form-floating">
+                    <select name="listing[category]" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option value="Natural Attractions" selected>Natural Attractions</option>
+                        <option value="Cultural Attractions">Cultural Attractions</option>
+                        <option value="Historical Attractions">Historical Attractions</option>
+                        <option value="Food & Drink">Food & Drink</option>
+                        <option value="Adventure & Outdoor Activities">Adventure & Outdoor Activities</option>
+                        <option value="College & Educational Events">College & Educational Events</option>
+                        <option value="Entertainment & Leisure">Entertainment & Leisure</option>
+                        <option value="Wellness & Healing">Wellness & Healing</option>
+                        <option value="Other">Other</option>
+                    </select>
                 </div>
                 <br>
                 <div class="submit-btn-wrapper">

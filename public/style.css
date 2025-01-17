@@ -116,6 +116,9 @@ body {
     border: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    background: rgb(2, 0, 34);
+    background: linear-gradient(90deg, rgba(2, 0, 34, 1) 0%, rgba(1, 0, 47, 1) 49%, rgba(0, 74, 62, 1) 100%);
+    
 }
 
 .dropdown-menu span:nth-of-type(1) {
@@ -129,7 +132,7 @@ body {
 .dropdown-menu a {
     display: block;
     margin: 1rem 0;
-    color: #000;
+    color: #ffffff;
     text-align: left;
     margin-left: 2rem;
     font-size: 17px;
@@ -138,11 +141,51 @@ body {
     width: fit-content;
 }
 
+#category {
+    background-color: transparent;
+    color: #000000;
+    border: none;
+}
+
+.custom-select {
+    position: relative;
+    width: 30px;
+    font-family: Arial, sans-serif;
+    z-index: 1;
+}
+
+.custom-select select {
+    appearance: none;
+    /* width: 20px; */
+    padding: 5px 15px 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.custom-select i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.custom-select:hover i {
+    color: #9b9b9b;
+}
+
+.custom-select select:focus {
+    outline: none;
+    border-color: #007BFF;
+}
 
 
-
-
-@media (max-width: 768px) {
+@media (max-width: 932px) {
     .navbar-wrapper .navigations {
         display: none;
     }
@@ -339,6 +382,12 @@ body {
     text-decoration: none;
 }
 
+.all-listings-wrapper a>.card>.card-body>div>.card-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .all-listings-wrapper figcaption a {
     text-decoration: none;
     color: #000;
@@ -346,14 +395,12 @@ body {
 
 .all-listings-wrapper {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     justify-items: center;
-    align-content: center;
+    align-content: start;
+    align-items: start;
     gap: 1.5rem;
 }
 
@@ -403,7 +450,8 @@ body {
     border-radius: 12px;
     background: rgb(0, 20, 40);
     background: linear-gradient(270deg, rgba(0, 20, 40, 1) 0%, rgba(0, 40, 70, 1) 50%, rgba(0, 60, 50, 1) 100%);
-    
+    /* width: ; */
+
 }
 
 .all-listings-wrapper .card:hover {
@@ -413,7 +461,7 @@ body {
 .all-listings-wrapper .card-body {
     border: none !important;
     display: flex;
-    width: 300px;
+    width: 307px;
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem 0.5rem !important;
@@ -433,7 +481,7 @@ body {
 
 .all-listings-wrapper .card-body .card-text {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     width: fit-content;
     gap: 5px;
@@ -473,6 +521,23 @@ body {
 .price-location label {
     margin-top: .5rem;
     width: 100%;
+}
+
+.form-floating {
+    height: min-content !important;
+}
+
+.form-floating>.form-select {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext,
+.form-floating>.form-select {
+    height: fit-content !important;
+    min-height: fit-content !important;
+    line-height: 1.25;
 }
 
 .submit-button {
@@ -768,6 +833,7 @@ body {
     width: 2.5rem;
     height: 2.5rem;
     /* width: 100%; */
+    z-index: 100;
 }
 
 .search-button:hover {
@@ -810,20 +876,24 @@ body {
 
 .about-wrapper h3 {
     margin-top: 20px;
-    color: #00d1ff; /* Soft golden yellow for headers */
+    color: #00d1ff;
+    /* Soft golden yellow for headers */
 }
 
 .about-wrapper ul {
     margin-top: 20px;
-    color: #cacaca; /* Light gray for list items */
+    color: #cacaca;
+    /* Light gray for list items */
 }
 
 .about-wrapper p {
     margin: 10px 0;
-    color: #cacaca; /* Soft teal for paragraphs */
+    color: #cacaca;
+    /* Soft teal for paragraphs */
 
 }
 
 .about-wrapper strong {
-    color: #00e6e6; /* Light salmon for strong text */
+    color: #00e6e6;
+    /* Light salmon for strong text */
 }

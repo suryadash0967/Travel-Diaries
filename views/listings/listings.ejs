@@ -7,16 +7,17 @@
           <div data-aos="zoom-out-up" style="display: flex; align-self: center; align-items: center; justify-content: center; width: min-content;">
             <a href="/listings/<%= listing._id %>">
               <div class="card" style="width: min-content; border: none;">
-                <img src="<%= listing.image.url %>" class="card-img-top" alt="...">
+                <img src="<%= listing.images[0].url %>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h6 class="card-title">Title</h6>
+                  <h6 class="card-title"><%= listing.title %></h6>
                   <div style="display: flex; flex-direction: column;">
                     <p class="card-text">
                       <i class="fa-solid fa-user"></i>
                       <span><%= listing.owner.username %></span>
                     </p>
                   </div>
-                  <p class="card-text">Location</p>
+                  <p class="card-text"><b>Category:</b> <%= listing.category %></p>
+                  <p class="card-text"><%= listing.location %>, <%= listing.country %></p>
                 </div>
               </div>
             </a>

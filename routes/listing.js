@@ -5,14 +5,14 @@ const {isLoggedIn, isOwner, validateListing, validateUUID} = require("../middlew
 const listingControllers = require("../controllers/listings.js");
 const multer  = require('multer');
 const {storage} = require("../cloudConfig.js");
-const upload = multer({ storage }); // multer stores our data in cloudinary
+const upload = multer({ storage });
 
 
 router.route("/")
 .get(WrapAsync(listingControllers.index))
 .post(
     isLoggedIn,
-    upload.single('listing[image]'),
+    upload.array('listing[images]'),
     validateListing,
     WrapAsync(listingControllers.createNewListing)
 );
@@ -36,7 +36,7 @@ router.route("/:id")
 .put(
     isLoggedIn,
     isOwner,
-    upload.single('listing[image]'),
+    upload.array('listing[images]'),
     validateListing, 
     WrapAsync(listingControllers.updateListing)
 )
