@@ -1,0 +1,40 @@
+<div class="sec-navbar-wrapper" style="position: relative; z-index: 200;">
+    <div style="width: 100%;display: flex;
+    align-items: center;
+    justify-content: center;">
+        <div class="search-listing-wrapper">
+            <form action="/listings/search" method="get">
+                <input type="text" name="q" id="query" class="search-listing-input"
+                    placeholder="search for a region or user">
+                <div class="custom-select">
+                    <select name="category" id="category" style="width: 20px;">
+                        <option value=""></option>
+                        <option value="Natural Attractions">Natural Attractions</option>
+                        <option value="Cultural Attractions">Cultural Attractions</option>
+                        <option value="Historical Attractions">Historical Attractions</option>
+                        <option value="Food & Drink">Food & Drink</option>
+                        <option value="Adventure & Outdoor Activities">Adventure & Outdoor Activities</option>
+                        <option value="College & Educational Events">College & Educational Events</option>
+                        <option value="Entertainment & Leisure">Entertainment & Leisure</option>
+                        <option value="Wellness & Healing">Wellness & Healing</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <i class="fa-solid fa-filter"></i>
+                </div>
+                <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="sort-feature-wrapper">
+        <form action="/listings/search" method="get">
+            <div class="custom-select2">
+                <select name="category" id="category">
+                    <option value="Most Liked">Most Liked</option>
+                    <option value="Most Commented">Most Commented</option>
+                    <option value="Most Posts">Most Posts</option>
+                </select>
+            </div>
+            <button class="search-button">Sort</button>
+        </form>
+    </div>
+</div>

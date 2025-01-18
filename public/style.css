@@ -90,6 +90,89 @@ body {
     color: #ffffff;
 }
 
+.sec-navbar-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+}
+
+
+/* .search-button2 {
+    padding: 8px 16px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.search-button2:hover {
+    background: rgb(14,161,0);
+    background: linear-gradient(90deg, rgba(14,161,0,1) 0%, rgba(0,235,205,1) 0%, rgba(0,7,107,1) 100%);
+} */
+
+.sort-feature-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(14,161,0);
+    background: linear-gradient(90deg, rgba(14,161,0,1) 0%, rgba(0,196,171,1) 0%, rgba(0,52,255,1) 100%);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+.sort-feature-wrapper form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-select2 {
+    position: relative;
+    margin-right: 10px;
+}
+
+.custom-select2 select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.custom-select2 select:hover {
+    border-color: #aaa;
+}
+
+.search-button {
+    padding: 8px 16px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+
+
+
+
+
+
 /* Hamburger menu */
 .hammy {
     display: none;
@@ -155,7 +238,6 @@ body {
 
 .custom-select select {
     appearance: none;
-    /* width: 20px; */
     padding: 5px 15px 10px 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -241,7 +323,10 @@ body {
     }
 
     .search-listing-wrapper {
-        width: 17.5rem !important;
+        width: 18.5rem !important;
+    }
+    .sec-navbar-wrapper{
+        flex-direction: column;
     }
 }
 
@@ -673,6 +758,10 @@ body {
     .all-reviews .card-body {
         width: 100% !important;
     }
+
+    .all-listings-wrapper .card-body {
+        width: 293px;
+    }
 }
 
 .three-dots {
@@ -854,11 +943,12 @@ body {
     height: 2.5rem;
     /* width: 100%; */
     z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 22px;
 }
 
-.search-button:hover {
-    background-color: red;
-}
 
 .search-button:hover i {
     color: #fff;
@@ -915,7 +1005,6 @@ body {
 
 .about-wrapper strong {
     color: #00e6e6;
-    /* Light salmon for strong text */
 }
 
 .all-images-wrapper {

@@ -22,30 +22,13 @@
       &nbsp;
       <span>Diaries</span>
     </a>
-    <div class="search-listing-wrapper">
-      <form action="/listings/search" method="get">
-        <input type="text" name="q" id="query" class="search-listing-input" placeholder="search for a region or user">
-        <div class="custom-select">
-          <select name="category" id="category" style="width: 20px;">
-            <option value=""></option>
-            <option value="Natural Attractions">Natural Attractions</option>
-            <option value="Cultural Attractions">Cultural Attractions</option>
-            <option value="Historical Attractions">Historical Attractions</option>
-            <option value="Food & Drink">Food & Drink</option>
-            <option value="Adventure & Outdoor Activities">Adventure & Outdoor Activities</option>
-            <option value="College & Educational Events">College & Educational Events</option>
-            <option value="Entertainment & Leisure">Entertainment & Leisure</option>
-            <option value="Wellness & Healing">Wellness & Healing</option>
-            <option value="Other">Other</option>
-          </select>
-          <i class="fa-solid fa-filter"></i>
-        </div>
-        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </form>
-    </div>
+    
     <div class="navigations">
       <div>
         <a href="/about">About Us</a>
+      </div>
+      <div>
+        <a href="/listings">Explore</a>
       </div>
       <div>
         <a href="/listings/new">Share your experiences</a>
@@ -65,6 +48,7 @@
   </div>
   <div class="dropdown-menu">
     <a href="/about" onclick="closeMenu()">About Us</a>
+    <a href="/listings" onclick="closeMenu()">Explore</a>
     <a href="/listings/new" onclick="closeMenu()">Share your experiences</a>
     <% if(!currUser) { %>
       <a href="/signup" onclick="closeMenu()">SignUp</a>

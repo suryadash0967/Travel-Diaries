@@ -29,6 +29,10 @@ const listingSchema = new mongoose.Schema({
         enum: values,
         required: true,
     },
+    likes: {
+        type: Number,
+        default: 0,
+    },
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Review"
