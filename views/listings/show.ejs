@@ -64,6 +64,31 @@
           justify-content: center;
           align-items: center;
           gap: 1rem;
+          user-select: none;
+        ">
+          <div style="display: flex">
+            <% if(!listing.hasLiked) { %>
+              <form action="/listings/<%= listing._id %>/like" method="get">
+                <button class="like-btn"><%= listing.likes %> <i class="fa-regular fa-heart"></i></button>
+              </form>
+            <% } %>
+
+            <% if(listing.hasLiked) { %>
+              &nbsp;&nbsp;
+              <form action="/listings/<%= listing._id %>/like" method="get">
+                <button class="like-btn"><%= listing.likes %> <i class="fa-solid fa-heart" style="color: red;"></i></button>
+              </form>
+            <% } %>
+            &nbsp;&nbsp;
+            <a href="#all-reviews-id" class="like-btn"><%= listing.reviews.length %> <i class="fa-regular fa-comment"></i></a>
+          </div>
+        </div>
+        <div style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
         ">
           <div style="display: flex">
             <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
@@ -100,7 +125,7 @@
       </div>
 
 
-      <div class="reviews-wrapper" style="user-select: none;">
+      <div class="reviews-wrapper"  style="user-select: none;">
         <% if(currUser) { %>
           <div class="reviews-input">
             <h4 style="margin-bottom: 1rem">Leave a review!</h4>
@@ -135,7 +160,7 @@
           </div>
           <% } %>
 
-            <div class="all-reviews-wrapper">
+            <div class="all-reviews-wrapper" id="all-reviews-id">
               <h4>All Reviews</h4>
               <div class="all-reviews">
                 <% if(!listing.reviews.length) { %>

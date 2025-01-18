@@ -3,6 +3,7 @@ const cloudinary = require('cloudinary').v2;
 
 module.exports.index = async (req, res) => {
     let allListings = await Listing.find().populate("owner");
+    allListings.sort((a, b) => b.likes - a.likes);
     res.render("listings/listings.ejs", {allListings});
 }
 
@@ -143,8 +144,6 @@ module.exports.renderShortlistedPage = async (req, res) => {
                 listing.category.toLowerCase().includes(category.toLowerCase())
             );
         }
-        
-
         return res.render("searchResults.ejs", { filteredListings, q, category});
     } catch (err) {
         console.error(err);
@@ -152,6 +151,19 @@ module.exports.renderShortlistedPage = async (req, res) => {
         res.redirect("/listings");
     }
 }
+
+
+module.exports.renderSortedPage = async (req, res) => {
+    let {order} = req.query;
+    let allListings = await Listing.find();
+    if(order === "Most Liked") {
+        allListings.sort((a, b) => a.likes - b.likes);
+    } else if(order === "Most Commented") {
+        allListings.sort((a, b) => b.reviews.length - a.reviews.length);
+    }
+    res.render("listings/listings.ejs", {allListings});
+}
+
 
 module.exports.handleImageDelete = async (req, res) => {
     let {id, index} = req.params;
@@ -186,4 +198,17 @@ module.exports.handleImageDelete = async (req, res) => {
     res.redirect(`/listings/${id}`);
 }
 
-
+module.exports.likeListing = async (req, res) => {
+    let {id} = req.params;
+    let listing = await Listing.findById(id);
+    if(!listing.hasLiked) {
+        listing.likes++;
+        listing.hasLiked = true;
+        await listing.save();
+    } else {
+        listing.likes--;
+        listing.hasLiked = false;
+        await listing.save();
+    }
+    res.redirect(`/listings/${id}`);
+}

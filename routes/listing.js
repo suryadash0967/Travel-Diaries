@@ -27,6 +27,10 @@ router.get("/search",
     WrapAsync(listingControllers.renderShortlistedPage)
 );
 
+router.get("/sort",
+    WrapAsync(listingControllers.renderSortedPage)
+);
+
 router.delete("/:id/:index",
     isLoggedIn,
     isOwner,
@@ -51,6 +55,12 @@ router.route("/:id")
     isOwner,
     validateUUID,
     WrapAsync(listingControllers.deleteListing)
+);
+
+router.get("/:id/like",
+    isLoggedIn,
+    isOwner,
+    WrapAsync(listingControllers.likeListing)
 );
 
 router.get("/:id/edit",

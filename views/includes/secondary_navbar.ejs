@@ -1,5 +1,5 @@
-<div class="sec-navbar-wrapper" style="position: relative; z-index: 200;">
-    <div style="width: 100%;display: flex;
+<div class="sec-navbar-wrapper">
+    <div style="width: 50%;display: flex;
     align-items: center;
     justify-content: center;">
         <div class="search-listing-wrapper">
@@ -26,15 +26,14 @@
         </div>
     </div>
     <div class="sort-feature-wrapper">
-        <form action="/listings/search" method="get">
+        <form action="/listings/sort" method="get">
             <div class="custom-select2">
-                <select name="category" id="category">
+                <select name="order" id="order">
                     <option value="Most Liked">Most Liked</option>
                     <option value="Most Commented">Most Commented</option>
-                    <option value="Most Posts">Most Posts</option>
                 </select>
             </div>
-            <button class="search-button">Sort</button>
+            <button class="search-button" type="submit">Sort</button>
         </form>
     </div>
 </div>
