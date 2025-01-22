@@ -114,10 +114,12 @@
         <% for(let image of listing.images) { %>
           <a href="<%= image.url %>" target="_blank" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px">
             <img src="<%= image.url %>" alt="">
-            <% if(currUser._id.equals(listing.owner._id)) { %>
-              <form method="post" action="/listings/<%= listing._id %>/<%= index %>?_method=DELETE">
-                <button style="margin-right: 0.4rem; border-radius: 20px" class="btn btn-danger delete-review-btn">Delete</button>
-              </form>
+            <% if(currUser) { %>
+              <% if(currUser._id.equals(listing.owner._id)) { %>
+                <form method="post" action="/listings/<%= listing._id %>/<%= index %>?_method=DELETE">
+                  <button style="margin-right: 0.4rem; border-radius: 20px" class="btn btn-danger delete-review-btn">Delete</button>
+                </form>
+              <% } %>
             <% } %>
           </a>
           <% index++; %>
