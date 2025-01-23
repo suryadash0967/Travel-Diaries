@@ -17,6 +17,14 @@ const listingSchema = new mongoose.Schema({
         required: true,
     },
     description: String,
+    dateBegin: {
+        type: String,
+        required: true
+    },
+    dateEnd: {
+        type: String,
+        required: true
+    },
     images: [{
         url: String,
         filename: String,

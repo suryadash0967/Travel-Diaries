@@ -1,5 +1,6 @@
 const Listing = require("../model/listing.js");
 const cloudinary = require('cloudinary').v2;
+const date = require("date-and-time");
 
 module.exports.index = async (req, res) => {
     let allListings = await Listing.find().populate("owner");
@@ -28,27 +29,46 @@ module.exports.showListing = async (req, res) => {
 }
 
 module.exports.createNewListing = async (req, res, next) => {
-    let images = req.files.map(file => ({
-        url: file.path,
-        filename: file.filename,
-    }));
+    try {
+        let dateBegin = req.body.listing.dateBegin;
+        let dateEnd = req.body.listing.dateEnd;
 
-    if (images.length > 15) {
-        images = images.slice(0, 15); // Keep only the first 15 images
-        req.flash("error", "You uploaded too many images! Only the first 15 were saved.");
-    } else {
-        req.flash("success", `New Post Created!`);
+        const inputPattern = 'YYYY-MM-DD';
+        const outputPattern = 'MMM DD YYYY';
+
+        dateBegin = date.parse(dateBegin, inputPattern);
+        dateEnd = date.parse(dateEnd, inputPattern);
+
+        const formattedDateBegin = date.format(dateBegin, outputPattern);
+        const formattedDateEnd = date.format(dateEnd, outputPattern);
+
+        let images = req.files.map(file => ({
+            url: file.path,
+            filename: file.filename,
+        }));
+
+        if (images.length > 15) {
+            images = images.slice(0, 15); // Keep only the first 15 images
+            req.flash("error", "You uploaded too many images! Only the first 15 were saved.");
+        } else {
+            req.flash("success", `New Post Created!`);
+        }
+
+        const listing = new Listing({
+            ...req.body.listing,
+            dateBegin: formattedDateBegin,
+            dateEnd: formattedDateEnd,
+            images,
+            owner: req.user._id,
+        });
+
+        await listing.save();
+        res.redirect(`/listings/${listing._id}`);
+    } catch (error) {
+        next(error);
     }
-
-    const listing = new Listing({
-        ...req.body.listing,
-        images,
-        owner: req.user._id,
-    });
-
-    await listing.save();
-    res.redirect(`/listings/${listing._id}`);
 };
+
 
 
 
