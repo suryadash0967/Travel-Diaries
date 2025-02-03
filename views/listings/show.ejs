@@ -45,55 +45,49 @@
             <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
           </div>
         </div>
-        <div style="
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 1rem;
-          user-select: none;
-        ">
-          <div style="display: flex">
-            <% if(!listing.hasLiked) { %>
-              <form action="/listings/<%= listing._id %>/like" method="get">
-                <button class="like-btn"><%= listing.likes %> <i class="fa-regular fa-heart"></i></button>
+        <div class="action-container">
+          <!-- Like & Review Section -->
+          <div class="interaction-buttons">
+            <% if (!listing.hasLiked) { %>
+              <form style="background-color: #b6b6b6; border-radius: 10px;" action="/listings/<%= listing._id %>/like" method="get">
+                <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn">
+                  <i class="fa-regular fa-heart"></i> <span><%= listing.likes %></span>
+                </button>
+              </form>
+            <% } else { %>
+              <form style="background-color: #b6b6b6; border-radius: 10px;" action="/listings/<%= listing._id %>/like" method="get">
+                <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn liked">
+                  <i class="fa-solid fa-heart"></i> <span><%= listing.likes %></span>
+                </button>
               </form>
             <% } %>
-
-            <% if(listing.hasLiked) { %>
-              &nbsp;&nbsp;
-              <form action="/listings/<%= listing._id %>/like" method="get">
-                <button class="like-btn"><%= listing.likes %> <i class="fa-solid fa-heart" style="color: red;"></i></button>
-              </form>
-            <% } %>
-            &nbsp;&nbsp;
-            <a href="#all-reviews-id" class="like-btn"><%= listing.reviews.length %> <i class="fa-regular fa-comment"></i></a>
+        
+            <a href="#all-reviews-id" class="comment-btn">
+              <i class="fa-regular fa-comment"></i> <span><%= listing.reviews.length %></span>
+            </a>
           </div>
-        </div>
-        <div style="
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 1rem;
-        ">
-          <div style="display: flex">
-            <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
+        
+          <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
+            <div class="btn-group">
               <form action="/listings/<%= listing._id %>/edit" method="get">
-                <button class="edit-btn">Edit</button>
+                <button class="edit-btn">
+                  <i class="fa-solid fa-pen"></i> Edit
+                </button>
               </form>
-              &nbsp;&nbsp;
+        
               <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
-                <button class="delete-btn">Delete</button>
+                <button class="delete-btn">
+                  <i class="fa-solid fa-trash"></i> Delete
+                </button>
               </form>
-              &nbsp;&nbsp; <% } %>
-          </div>
+            </div>
+          <% } %>
+        
           <a class="go-back-btn" href="/listings">
-            <i class="fa-solid fa-angle-left"></i>&nbsp;
-            <span>go back to home</span>
+            <i class="fa-solid fa-angle-left"></i> <span>go back to home</span>
           </a>
         </div>
-      </div>
+        
 
 
       <div class="all-images-wrapper">

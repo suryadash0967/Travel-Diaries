@@ -59,7 +59,6 @@ router.route("/:id")
 
 router.get("/:id/like",
     isLoggedIn,
-    isOwner,
     WrapAsync(listingControllers.likeListing)
 );
 

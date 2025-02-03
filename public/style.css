@@ -590,6 +590,103 @@ body {
   .read-more:hover {
     text-decoration: underline;
   }
+
+  .action-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+  }
+  
+  /* Like & Comment Buttons */
+  .interaction-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .like-btn, .comment-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #d3d3d3;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .like-btn i {
+    font-size: 1.3rem;
+    color: #777;
+  }
+  
+  .like-btn.liked i {
+    color: red;
+  }
+  
+  /* Edit & Delete Buttons */
+  .btn-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .edit-btn, .delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .edit-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  .edit-btn i {
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-btn {
+    background-color: #e02b3d;
+    color: white;
+  }
+  .delete-btn i {
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #bb1425;
+  }
+  
+  /* Back Button */
+  .go-back-btn {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .go-back-btn:hover {
+    color: #000000;
+  }
   
 
 @media (max-width: 1305px) {
@@ -764,27 +861,6 @@ body {
     width: 45%;
 }
 
-.listing-details-wrapper .edit-btn,
-.listing-details-wrapper .back-btn {
-    border: none;
-    outline: none;
-    background-color: rgb(0, 0, 0);
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 10px;
-    text-decoration: none;
-}
-
-.listing-details-wrapper .delete-btn {
-    border: none;
-    outline: none;
-    background-color: rgb(255, 0, 0);
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 10px;
-    text-decoration: none;
-}
-
 .listing-details-wrapper .image-div {
     display: flex;
     flex-direction: column;
@@ -816,9 +892,14 @@ body {
     gap: 1.5rem;
 }
 
-.details-part-wrapper h4 {
+.details-part-wrapper > h4:nth-of-type(1) {
     text-align: center;
     color: #000;
+}
+
+.reviews-input > h4,
+#all-reviews-id > h4 {
+    text-align: left;
 }
 
 @media (max-width: 768px) {
