@@ -56,13 +56,13 @@
         <!-- Hover Popup -->
         <div class="hover-popup">
           <h4 style="margin: auto; text-align: center; margin: 0.5rem 0 1.5rem 0; color: #000;">
-            <%= listing.title %>
+            <div style="width: 15rem; text-align: center; margin: auto;"><%= listing.title %></div>
           </h4>
           <div class="listing-desc-hover">
             <div class="image-div">
               <img src="<%= listing.images[0].url %>" alt="Listing Image" />
             </div>
-            <div style="display: flex; flex-direction: column; justify-content: center;">
+            <div style="display: flex; flex-direction: column; justify-content: center; width: 90%;">
               <p>
                 <a href="/profile/<%= listing.owner._id %>" style="color: #000000; text-decoration: none; display: flex; align-items: center; gap: 5px;">
                   <i style="height: 30px; width: 30px; border: 2px solid #000000; border-radius: 50%; padding: 5px; display: flex; align-items: center; justify-content: center;" 
@@ -70,10 +70,10 @@
                   <b  style="font-size: 16px;"><%= listing.owner.username %></b>
                 </a>
               </p>
-              <p><strong>Description:</strong> <%= listing.description %></p>
-              <p><strong>Date:</strong> <%= listing.dateBegin %> - <%= listing.dateEnd %></p>
-              <p><strong>Estimated Cost:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %></p>
-              <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+              <p class="popup-desc"><strong>Description: </strong><%= listing.description %></p>
+              <p class="popup-date"><strong>Date:</strong> <%= listing.dateBegin %> - <%= listing.dateEnd %></p>
+              <p class="popup-cost"><strong>Estimated Cost:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %></p>
+              <p class="popup-location"><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
             </div>
             
           </div>

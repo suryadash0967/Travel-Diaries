@@ -1,17 +1,33 @@
 <script>
   function toggleMenu() {
-    const dropdown = document.querySelector(".dropdown-menu");
-    const hammy = document.querySelector(".hammy");
-    dropdown.classList.toggle("show");
-    hammy.classList.toggle("show");
+    document.querySelector(".dropdown-menu").classList.toggle("show");
+    document.querySelector(".hammy").classList.toggle("show");
   }
 
   function closeMenu() {
-    const dropdown = document.querySelector(".dropdown-menu");
-    const hammy = document.querySelector(".hammy");
-    dropdown.classList.remove("show");
-    hammy.classList.remove("show");
+    document.querySelector(".dropdown-menu").classList.remove("show");
+    document.querySelector(".hammy").classList.remove("show");
   }
+
+  function toggleUserMenu() {
+    document.querySelector(".user-dropdown").classList.toggle("show");
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".user-menu")) {
+      document.querySelector(".user-dropdown")?.classList.remove("show");
+    }
+  });
+
+  function toggleUserMenu2() {
+    document.querySelector(".user-dropdown2").classList.toggle("show");
+  }
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".user-menu2")) {
+      document.querySelector(".user-dropdown2")?.classList.remove("show");
+    }
+  });
 </script>
 
 <nav class="navbar-head">
@@ -22,46 +38,77 @@
       &nbsp;
       <span>Diaries</span>
     </a>
-    
+
     <div class="navigations">
-      <div>
-        <a href="/about">About Us</a>
-      </div>
-      <div>
-        <a href="/listings">Explore</a>
-      </div>
-      <div>
-        <a href="/listings/new">Share your experiences</a>
-      </div>
-      <% if(!currUser) { %>
+      <a href="/about">About Us</a>
+      <a href="/listings">Explore</a>
+      <a href="/listings/new">Share your experiences</a>
+
+      <% if (!currUser) { %>
         <a href="/signup"><b>SignUp</b></a>
         <a href="/login"><b>LogIn</b></a>
-      <% } if(currUser) { %>
-        <a href="/logout"><b>LogOut</b></a>
+      <% } else { %>
+
+        <div class="user-menu">
+          <button class="user-icon" onclick="toggleUserMenu()">
+            <i class="fa-solid fa-user-circle"></i>
+          </button>
+          <div class="user-dropdown">
+            <a href="/profile"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="/profile#my-posts"><i class="fa-solid fa-list"></i> My Listings</a>
+            <a href="/profile#saved-posts"><i class="fa-solid fa-bookmark"></i> Saved Posts</a>
+            <a href="/profile#settings"><i class="fa-solid fa-cog"></i> Settings</a>
+            <a href="#"><i class="fa-solid fa-life-ring"></i> Help & Support</a>
+            <a href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+          </div>
+        </div>
+
       <% } %>
     </div>
-    <div class="hammy" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+
+    <div style="" class="user-menu2-wrapper">
+      <div class="user-menu2">
+        <button class="user-icon" onclick="toggleUserMenu2()">
+          <i class="fa-solid fa-user-circle"></i>
+        </button>
+        <div class="user-dropdown2">
+          <a href="/profile"><i class="fa-solid fa-user"></i> Profile</a>
+          <a href="/profile#my-posts"><i class="fa-solid fa-list"></i> My Listings</a>
+          <a href="/profile#saved-posts"><i class="fa-solid fa-bookmark"></i> Saved Posts</a>
+          <a href="#"><i class="fa-solid fa-life-ring"></i> Help & Support</a>
+          <a href="/profile#settings"><i class="fa-solid fa-cog"></i> Settings</a>
+          <% if (!currUser) { %>
+            <a href="/signup"><i class="fa-solid fa-user-plus"></i> SignUp</a>
+            <a href="/login"><i class="fa-solid fa-right-to-bracket"></i> LogIn</a>
+          <% } else { %>
+            <a href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+          <% } %>
+          
+        </div>
+      </div>
+  
+      <div class="hammy" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
+
+
+
   <div class="dropdown-menu">
     <a href="/about" onclick="closeMenu()">About Us</a>
     <a href="/listings" onclick="closeMenu()">Explore</a>
     <a href="/listings/new" onclick="closeMenu()">Share your experiences</a>
-    <% if(!currUser) { %>
-      <a href="/signup" onclick="closeMenu()">SignUp</a>
-      <a href="/login" onclick="closeMenu()">LogIn</a>
-      <% } if(currUser) { %>
-        <a href="/logout" onclick="closeMenu()">LogOut</a>
-      <% } %>
-      <a style="color: #ff0000; font-weight: 600; font-size: 20px;" href="/listings" onclick="closeMenu()">
-        <i class="fa-regular fa-compass"></i>&nbsp;
-        <span>Travel</span>
-        <!-- &nbsp; -->
-        <span>Diaries</span>
-      </a>
+    
+    <a class="logo-footer" href="/listings" onclick="closeMenu()">
+      <i class="fa-regular fa-compass"></i>&nbsp; <span>Travel Diaries</span>
+    </a>
+    <div class="user-menu">
+      <button class="user-icon" onclick="toggleUserMenu()">
+        <i class="fa-solid fa-user-circle"></i>
+      </button>
+    </div>
   </div>
 </nav>
-
