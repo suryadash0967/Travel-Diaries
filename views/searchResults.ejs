@@ -1,8 +1,6 @@
 <% layout("layouts/boilerplate") %>
 
 <body>
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
-  <spline-viewer loading-anim-type="spinner-small-light" url="https://prod.spline.design/tUwuVpMr-FzaJ6q9/scene.splinecode"></spline-viewer>
   <div
     style="
       width: 100%;
@@ -41,7 +39,7 @@
         </a>
         <% } %>
       <% } if(filteredListings.length === 0) { %>
-      <h5 style="margin: 1rem auto;  position: relative; left: 50%;">No such listing found!</h5>
+      <h5 style="margin: 1rem auto; color: #000; position: relative; left: 50%;">No such listing found!</h5>
       <% } %>
   </div>
 </body>

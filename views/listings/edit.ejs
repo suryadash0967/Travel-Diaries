@@ -1,6 +1,5 @@
 <script>
     let handleSubmit = (event) => {
-        // Ensure the form submits
         const form = event.target.closest("form");
         event.target.disabled = true;
         event.target.style.opacity = "0.7";
@@ -25,10 +24,10 @@
         <br>
         <div>
             <label for="start">Trip Start date:</label>
-            <input name="listing[dateBegin]" type="date" id="start" name="trip-start" value="<%= listing.dateBegin %>"/>
+            <input name="listing[dateBegin]" type="date" id="start" value="<%= listing.dateBegin %>"/>
             
             <label for="start">Trip End date:</label>
-            <input name="listing[dateEnd]" type="date" id="end" name="trip-end" value="<%= listing.dateEnd %>"/>
+            <input name="listing[dateEnd]" type="date" id="end" value="<%= listing.dateEnd %>"/>
         </div>
         <div>
             <label for="image" class="form-label">Upload New Images (Optional)</label>

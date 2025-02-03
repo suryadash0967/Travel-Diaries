@@ -22,44 +22,28 @@
 <% layout("layouts/boilerplate") %>
 
   <body>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
-    <spline-viewer loading-anim-type="spinner-small-light"
-      url="https://prod.spline.design/tUwuVpMr-FzaJ6q9/scene.splinecode"></spline-viewer>
     <div class="listing-details-wrapper">
       <div class="details-part-wrapper">
         <h4>
           <%= listing.title %>
         </h4>
-        <div class="listing-desc">
+        <div class="listing-desc" style="gap: 1.5rem;">
           <div class="image-div">
             <img src="<%= listing.images[0].url %>" alt="Listing Image" />
           </div>
-          <ul style="display: flex; flex-direction: column; gap: 4px; margin-top: 10px;">
-            <li>
-              <a href="/profile/<%= listing.owner._id %>" style="color: #fff; text-decoration: none;">
-                <div style="display: flex; flex-direction: column;">
-                  <p class="card-text" style="display: flex; align-items: center; gap: 5px;">
-                    <i style="height: 30px; width: 30px; border: 2px solid #fff; border-radius: 50%; padding: 5px; display: flex; align-items: center; justify-content: center;"
-                      class="fa-solid fa-user"></i>
-                    <b><span>
-                        <%= listing.owner.username %>
-                      </span></b>
-                  </p>
-                </div>
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <p>
+              <a href="/profile/<%= listing.owner._id %>" style="color: #000000; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                <i style="height: 30px; width: 30px; border: 2px solid #000000; border-radius: 50%; padding: 5px; display: flex; align-items: center; justify-content: center;" 
+                  class="fa-solid fa-user"></i>
+                <b  style="font-size: 16px;"><%= listing.owner.username %></b>
               </a>
-            </li>
-            <li>
-              <%= listing.description %>
-            </li>
-            <li>
-              <%= listing.dateBegin %> - <%= listing.dateEnd %>
-            </li>
-            <li>Estimated cost: ₹ <%= listing.price.toLocaleString("en-IN") %>
-            </li>
-            <li>
-              <%= listing.location %>, <%= listing.country %>
-            </li>
-          </ul>
+            </p>
+            <p><strong>Description:</strong> <%= listing.description %></p>
+            <p><strong>Date:</strong> <%= listing.dateBegin %> - <%= listing.dateEnd %></p>
+            <p><strong>Estimated Cost:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %></p>
+            <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+          </div>
         </div>
         <div style="
           display: flex;
@@ -114,19 +98,54 @@
 
       <div class="all-images-wrapper">
         <% let index = 0; %>
-        <% for(let image of listing.images) { %>
-          <a href="<%= image.url %>" target="_blank" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px">
-            <img src="<%= image.url %>" alt="">
-            <% if(currUser) { %>
-              <% if(currUser._id.equals(listing.owner._id)) { %>
-                <form method="post" action="/listings/<%= listing._id %>/<%= index %>?_method=DELETE">
-                  <button style="margin-right: 0.4rem; border-radius: 20px" class="btn btn-danger delete-review-btn">Delete</button>
-                </form>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <% while(index <= listing.images.length / 3) { %>
+          <% let image = listing.images[index] %>
+            <a href="<%= image.url %>" target="_blank" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px">
+              <img src="<%= image.url %>" alt="">
+              <% if(currUser) { %>
+                <% if(currUser._id.equals(listing.owner._id)) { %>
+                  <form method="post" action="/listings/<%= listing._id %>/<%= index %>?_method=DELETE">
+                    <button style="margin-right: 0.4rem; border-radius: 20px" class="btn btn-danger delete-review-btn">Delete</button>
+                  </form>
+                <% } %>
               <% } %>
+            </a>
+            <% index++; %>
             <% } %>
-          </a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <% while(index <= (2 * listing.images.length) / 3) { %>
+            <% let image = listing.images[index] %>
+            <a href="<%= image.url %>" target="_blank" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px">
+              <img src="<%= image.url %>" alt="">
+              <% if(currUser) { %>
+                <% if(currUser._id.equals(listing.owner._id)) { %>
+                  <form method="post" action="/listings/<%= listing._id %>/<%= index %>?_method=DELETE">
+                    <button style="margin-right: 0.4rem; border-radius: 20px" class="btn btn-danger delete-review-btn">Delete</button>
+                  </form>
+                <% } %>
+              <% } %>
+            </a>
           <% index++; %>
           <% } %>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <% while(index < listing.images.length) { %>
+            <% let image = listing.images[index] %>
+            <a href="<%= image.url %>" target="_blank" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px">
+              <img src="<%= image.url %>" alt="">
+              <% if(currUser) { %>
+                <% if(currUser._id.equals(listing.owner._id)) { %>
+                  <form method="post" action="/listings/<%= listing._id %>/<%= index %>?_method=DELETE">
+                    <button style="margin-right: 0.4rem; border-radius: 20px" class="btn btn-danger delete-review-btn">Delete</button>
+                  </form>
+                <% } %>
+              <% } %>
+            </a>
+          <% index++; %>
+          <% } %>
+        </div>
       </div>
 
 
@@ -160,7 +179,7 @@
                 </div>
               </div>
               <br />
-              <button type="submit" class="btn btn-outline-light">Submit</button>
+              <button type="submit" class="btn btn-outline-dark">Submit</button>
             </form>
           </div>
           <% } %>

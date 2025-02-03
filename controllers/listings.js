@@ -42,6 +42,7 @@ module.exports.createNewListing = async (req, res, next) => {
         const formattedDateBegin = date.format(dateBegin, outputPattern);
         const formattedDateEnd = date.format(dateEnd, outputPattern);
 
+
         let images = req.files.map(file => ({
             url: file.path,
             filename: file.filename,
@@ -85,6 +86,22 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateListing = async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id);
+    const incomingListing =  req.body.listing;
+
+    let dateBegin = req.body.listing.dateBegin;
+    let dateEnd = req.body.listing.dateEnd;
+
+    const inputPattern = 'YYYY-MM-DD';
+    const outputPattern = 'MMM DD YYYY';
+
+    dateBegin = date.parse(dateBegin, inputPattern);
+    dateEnd = date.parse(dateEnd, inputPattern);
+
+    const formattedDateBegin = date.format(dateBegin, outputPattern);
+    const formattedDateEnd = date.format(dateEnd, outputPattern);
+
+    incomingListing.dateBegin = formattedDateBegin;
+    incomingListing.dateEnd = formattedDateEnd;
 
     if (!listing) {
         req.flash("error", "Post not found!");
@@ -108,7 +125,7 @@ module.exports.updateListing = async (req, res) => {
 
     listing.images = imagesToKeep;
 
-    Object.assign(listing, req.body.listing);
+    Object.assign(listing, incomingListing);
     await listing.save();
 
     req.flash("success", "Post Updated!");
@@ -175,12 +192,13 @@ module.exports.renderShortlistedPage = async (req, res) => {
 
 module.exports.renderSortedPage = async (req, res) => {
     let {order} = req.query;
-    let allListings = await Listing.find();
+    let allListings = await Listing.find().populate("owner");
     if(order === "Most Liked") {
         allListings.sort((a, b) => a.likes - b.likes);
     } else if(order === "Most Commented") {
         allListings.sort((a, b) => b.reviews.length - a.reviews.length);
     }
+    console.log(allListings)
     res.render("listings/listings.ejs", {allListings});
 }
 

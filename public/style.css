@@ -5,6 +5,7 @@
     padding: 0;
     font-family: Poppins;
     transition: all 0.4s ease-in-out;
+    color: #000;
 }
 
 :root {
@@ -14,8 +15,6 @@
 
 body {
     min-height: 100vh;
-    background: rgb(2, 0, 34);
-    background: linear-gradient(90deg, rgba(2, 0, 34, 1) 0%, rgba(1, 0, 47, 1) 49%, rgba(0, 74, 62, 1) 100%);
 }
 
 
@@ -28,12 +27,12 @@ body {
 
 /* Style the scrollbar track (background) */
 ::-webkit-scrollbar-track {
-    background: rgba(0, 74, 62, 1);
+    background: rgb(255, 255, 255);
 }
 
 /* Style the scrollbar thumb (draggable part) */
 ::-webkit-scrollbar-thumb {
-    background: rgb(0, 43, 40);
+    background: rgb(83, 83, 83);
     border-radius: 10px;
 }
 
@@ -56,8 +55,6 @@ body {
     height: 4rem;
     padding: 0 0.6rem;
     box-shadow: 0 1px 10px #000;
-    background: rgb(2, 0, 34);
-    background: linear-gradient(90deg, rgba(2, 0, 34, 1) 0%, rgba(1, 0, 47, 1) 49%, rgba(0, 74, 62, 1) 100%);
 }
 
 .navbar-wrapper .logo-icon {
@@ -74,9 +71,13 @@ body {
 .navbar-wrapper .logo-icon>span:nth-of-type(2) {
     color: rgb(0, 139, 116);
 }
+.navbar-wrapper .logo-icon>span:nth-of-type(1) {
+    color: red;
+}
 
 .navbar-wrapper .logo-icon i {
     font-size: 22px;
+    color: red;
 }
 
 .navbar-wrapper .navigations {
@@ -87,7 +88,7 @@ body {
 
 .navbar-wrapper .navigations a {
     text-decoration: none;
-    color: #ffffff;
+    color: #000000;
 }
 
 .sec-navbar-wrapper {
@@ -103,13 +104,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(14,161,0);
-    background: linear-gradient(90deg, rgba(14,161,0,1) 0%, rgba(0,196,171,1) 0%, rgba(0,52,255,1) 100%);
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
     margin: 20px auto;
     width: fit-content;
     height: fit-content;
+    border: 1px solid #b3b3b3;
 }
 
 .sort-feature-wrapper form {
@@ -142,7 +141,7 @@ body {
 .search-button {
     padding: 8px 16px;
     background: transparent;
-    color: #fff;
+    color: #000000;
     border: none;
     border-radius: 4px;
     font-size: 14px;
@@ -182,8 +181,6 @@ body {
     border: none !important;
     padding: 0 !important;
     margin: 0 !important;
-    background: rgb(2, 0, 34);
-    background: linear-gradient(90deg, rgba(2, 0, 34, 1) 0%, rgba(1, 0, 47, 1) 49%, rgba(0, 74, 62, 1) 100%);
 }
 
 .dropdown-menu span:nth-of-type(1) {
@@ -197,13 +194,17 @@ body {
 .dropdown-menu a {
     display: block;
     margin: 1rem 0;
-    color: #ffffff;
+    color: #000000;
     text-align: left;
     margin-left: 2rem;
     font-size: 17px;
     text-decoration: none;
     background-color: none;
     width: fit-content;
+}
+
+.dropdown-menu i {
+    color: red;
 }
 
 #category {
@@ -234,13 +235,13 @@ body {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #fff;
+    color: #949494;
     pointer-events: none;
     cursor: pointer;
 }
 
 .custom-select:hover i {
-    color: #9b9b9b;
+    color: #000000;
 }
 
 .custom-select select:focus {
@@ -463,12 +464,138 @@ body {
 .all-listings-wrapper {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     justify-items: center;
     align-content: start;
     align-items: start;
     gap: 1.5rem;
+}
+
+  
+  
+  .all-listings-wrapper .card {
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .hover-popup {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255);
+    color: white;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 300;
+    width: 80%;
+  }
+
+  .listing-desc-hover {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .listing-desc-hover .image-div img {
+    height: 350px;
+    width: 550px;
+    border-radius: 20px;
+  }
+
+  .listing-desc-hover .image-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+@media (max-width: 950px) {
+    .listing-desc-hover .image-div img {
+        margin: auto;
+        width: 90%;
+        height: auto;
+    }
+}
+
+.cross-btn i {
+    color: #ff0000; display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    border: 1px solid #4b4b4b;
+}
+.cross-btn {
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 600px) {
+    .cross-btn i {
+        padding: 13px;
+        font-size: 17px;
+
+    }
+}
+@media (max-width: 1081px) {
+    .listing-desc-hover {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: auto;
+    }
+    .listing-desc-hover div:nth-of-type(2){
+        width: 80%;
+    }
+}
+
+@media (max-width: 950px) {
+    
+}
+
+/* 
+  
+  .listing-card-wrapper:hover .hover-popup {
+    opacity: 1;
+    visibility: visible;
+    box-shadow: 0px 50px 300px #000;
+  }
+  
+  @media (min-width: 800px) {
+    .listing-card-wrapper:hover .hover-popup {
+        opacity: 1;
+        visibility: visible;
+        box-shadow: 0px 50px 300px #000;
+    }
+  } */
+
+  .read-more {
+    display: inline-block;
+    color: #ffcc00;
+    font-weight: bold;
+    margin-top: 5px;
+    text-decoration: none;
+  }
+  
+  .read-more:hover {
+    text-decoration: underline;
+  }
+  
+
+@media (max-width: 1305px) {
+    .all-listings-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -507,22 +634,15 @@ body {
 
 .all-listings-wrapper .card {
     height: fit-content !important;
-    border: none !important;
     transition: all 0.2s ease-in-out;
-    background-color: #0f0f0f;
-    color: #fff;
+    color: #000000;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
-    background: rgb(0, 20, 40);
-    background: linear-gradient(270deg, rgba(0, 20, 40, 1) 0%, rgba(0, 40, 70, 1) 50%, rgba(0, 60, 50, 1) 100%);
+    border: 1px solid #b1b1b1;
     /* width: ; */
 
-}
-
-.all-listings-wrapper .card:hover {
-    transform: scale(1.1, 1.1);
 }
 
 .all-listings-wrapper .card-body {
@@ -543,12 +663,12 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 2px solid #fff;
+    border: 2px solid #000000;
 }
 
 .all-listings-wrapper .card-body .card-text {
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: center;
     width: fit-content;
     gap: 5px;
@@ -698,6 +818,7 @@ body {
 
 .details-part-wrapper h4 {
     text-align: center;
+    color: #000;
 }
 
 @media (max-width: 768px) {
@@ -833,8 +954,6 @@ body {
 }
 
 .all-reviews .card-body {
-    background: rgb(0, 20, 40);
-    background: linear-gradient(270deg, rgba(0, 20, 40, 1) 0%, rgba(0, 40, 70, 1) 50%, rgba(0, 60, 50, 1) 100%);
     color: #fff;
     border-radius: 12px;
 }
@@ -934,6 +1053,14 @@ body {
 
 .search-button i {
     background-color: none;
+    color: rgb(0, 0, 0);
+}
+
+.search-button:hover i {
+    color: rgb(255, 255, 255);
+}
+.search-button:hover {
+    background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
 }
 
@@ -959,41 +1086,38 @@ body {
 }
 
 .about-wrapper h1 {
-    color: rgb(0, 175, 146);
+    color: rgb(0, 0, 0);
 }
 
 .about-wrapper h3 {
     margin-top: 20px;
-    color: #00d1ff;
+    color: #000000;
     /* Soft golden yellow for headers */
 }
 
 .about-wrapper ul {
     margin-top: 20px;
-    color: #cacaca;
+    color: #000000;
     /* Light gray for list items */
 }
 
 .about-wrapper p {
     margin: 10px 0;
-    color: #cacaca;
+    color: #000000;
     /* Soft teal for paragraphs */
 
 }
 
 .about-wrapper strong {
-    color: #00e6e6;
+    color: #000000;
 }
 
 .all-images-wrapper {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
-    gap: 1.5rem;
+    /* gap: 1.5rem; */
 }
 
 .all-images-wrapper a {

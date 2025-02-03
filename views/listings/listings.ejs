@@ -1,28 +1,89 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".listing-card-wrapper").forEach((card) => {
+      const popup = card.querySelector(".hover-popup");
+      const crossBtn = card.querySelector(".cross-btn");
+
+      card.addEventListener("click", function (event) {
+        // Hide any other open popups before showing the clicked one
+        document.querySelectorAll(".hover-popup").forEach((p) => {
+          if (p !== popup) {
+            p.style.opacity = "0";
+            p.style.visibility = "hidden";
+            popup.style.zIndex = "-500";
+          }
+        });
+
+        const isVisible = popup.style.opacity === "1";
+        popup.style.opacity = "1";
+        popup.style.visibility = "visible";
+        popup.style.zIndex = "300";
+      });
+
+      // Close popup when clicking outside of it
+      crossBtn.addEventListener("click", function (e) {
+        // Stop the click event from bubbling up to the card
+        e.stopPropagation();
+
+        popup.style.opacity = "0";
+        popup.style.visibility = "hidden";
+        setTimeout(() => {
+          popup.style.zIndex = "-500";
+        }, 300);
+      });
+
+    });
+  });
+</script>
+
+
 <% layout("layouts/boilerplate") %>
 <%- include("../includes/secondary_navbar.ejs") %>
+
 <body>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.59/build/spline-viewer.js"></script>
-    <spline-viewer loading-anim-type="spinner-small-light" url="https://prod.spline.design/tUwuVpMr-FzaJ6q9/scene.splinecode"></spline-viewer>
-    <div class="all-listings-wrapper">
-        <% for(let listing of allListings) { %>
-          <div data-aos="zoom-out-up" style="display: flex; align-self: center; align-items: center; justify-content: center; width: min-content;">
-            <a href="/listings/<%= listing._id %>">
-              <div class="card" style="width: min-content; border: none;">
-                <img src="<%= listing.images[0].url %>" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h6 class="card-title"><%= listing.title %></h6>
-                  <div style="display: flex; flex-direction: column;">
-                    <p class="card-text">
-                      <i class="fa-solid fa-user"></i>
-                      <span><%= listing.owner.username %></span>
-                    </p>
-                  </div>
-                  <p class="card-text"><b>Category:</b> <%= listing.category %></p>
-                  <p class="card-text"><%= listing.location %>, <%= listing.country %></p>
-                </div>
-              </div>
-            </a>
+  <div class="all-listings-wrapper">
+    <% for(let listing of allListings) { %>
+      <div class="listing-card-wrapper">
+        <div class="card" style="cursor: pointer;">
+          <img src="<%= listing.images[0].url %>" class="card-img-top" alt="Listing Image">
+          <div class="card-body">
+            <h6 class="card-title"><%= listing.title %></h6>
+            <p class="card-text"><i class="fa-solid fa-user"></i> <span><%= listing.owner.username %></span></p>
+            <p class="card-text"><%= listing.location %>, <%= listing.country %></p>
           </div>
-        <% } %>
+        </div>
+
+        <!-- Hover Popup -->
+        <div class="hover-popup">
+          <h4 style="margin: auto; text-align: center; margin: 0.5rem 0 1.5rem 0; color: #000;">
+            <%= listing.title %>
+          </h4>
+          <div class="listing-desc-hover">
+            <div class="image-div">
+              <img src="<%= listing.images[0].url %>" alt="Listing Image" />
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+              <p>
+                <a href="/profile/<%= listing.owner._id %>" style="color: #000000; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                  <i style="height: 30px; width: 30px; border: 2px solid #000000; border-radius: 50%; padding: 5px; display: flex; align-items: center; justify-content: center;" 
+                    class="fa-solid fa-user"></i>
+                  <b  style="font-size: 16px;"><%= listing.owner.username %></b>
+                </a>
+              </p>
+              <p><strong>Description:</strong> <%= listing.description %></p>
+              <p><strong>Date:</strong> <%= listing.dateBegin %> - <%= listing.dateEnd %></p>
+              <p><strong>Estimated Cost:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %></p>
+              <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+            </div>
+            
+          </div>
+          
+          <a href="/listings/<%= listing._id %>" style="text-align: center; margin: auto; color: #000; font-size: 17px; text-decoration: underline; margin: 1.5rem auto 1rem auto;" class="read-more">Expand post</a>
+          <div class="cross-btn">
+            <i class="fa-solid fa-x"></i>
+          </div>
+        </div>
       </div>
+    <% } %>
+  </div>
 </body>
