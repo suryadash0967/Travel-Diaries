@@ -92,7 +92,7 @@
 
       <div class="all-images-wrapper">
         <% let index = 0; %>
-        <div style="display: flex; flex-direction: column; gap: 2rem;">
+        <div style="display: flex; flex-direction: column; gap: 2rem; margin: 1rem 0;">
           <% while(index <= listing.images.length / 3) { %>
           <% let image = listing.images[index] %>
             <a href="<%= image.url %>" target="_blank" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px">
@@ -108,7 +108,7 @@
             <% index++; %>
             <% } %>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 2rem;">
+        <div style="display: flex; flex-direction: column; gap: 2rem; margin: 1rem 0;">
           <% while(index <= (2 * listing.images.length) / 3) { %>
             <% let image = listing.images[index] %>
             <a href="<%= image.url %>" target="_blank" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px">
@@ -124,7 +124,7 @@
           <% index++; %>
           <% } %>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 2rem;">
+        <div style="display: flex; flex-direction: column; gap: 2rem; margin: 1rem 0;">
           <% while(index < listing.images.length) { %>
             <% let image = listing.images[index] %>
             <a href="<%= image.url %>" target="_blank" style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px">
