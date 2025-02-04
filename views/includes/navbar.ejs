@@ -21,6 +21,8 @@
 
   function toggleUserMenu2() {
     document.querySelector(".user-dropdown2").classList.toggle("show");
+    document.querySelector(".dropdown-menu").classList.remove("show");
+    document.querySelector(".hammy").classList.remove("show");
   }
 
   document.addEventListener("click", (event) => {
@@ -66,7 +68,7 @@
       <% } %>
     </div>
 
-    <div style="" class="user-menu2-wrapper">
+    <div class="user-menu2-wrapper">
       <div class="user-menu2">
         <button class="user-icon" onclick="toggleUserMenu2()">
           <i class="fa-solid fa-user-circle"></i>
@@ -105,10 +107,5 @@
     <a class="logo-footer" href="/listings" onclick="closeMenu()">
       <i class="fa-regular fa-compass"></i>&nbsp; <span>Travel Diaries</span>
     </a>
-    <div class="user-menu">
-      <button class="user-icon" onclick="toggleUserMenu()">
-        <i class="fa-solid fa-user-circle"></i>
-      </button>
-    </div>
   </div>
 </nav>

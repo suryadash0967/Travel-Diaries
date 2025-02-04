@@ -1,12 +1,13 @@
+require("dotenv").config({path: "../.env"});
 const mongoose = require("mongoose");
 const Review = require("./review.js");
-// const DB_URL = process.env.ATLAS_URL;
-const { values } = require("../utils/categories.js")
+const DB_URL = process.env.ATLAS_URL;
+const { values } = require("../utils/categories.js");
 
 main()
     .then(() => console.log("connected to db"));
 async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/traveldiaries");
+    await mongoose.connect(DB_URL);
 }
 
 
