@@ -44,6 +44,6 @@ module.exports.handleLogOut = (req, res) => {
 }
 
 
-module.exports.renderProfilePage = async (req, res) => {
-
+module.exports.renderProfilePage = (req, res) => {
+    res.render("profile/profile.ejs");
 }

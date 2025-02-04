@@ -26,6 +26,6 @@ router.get("/about", (req, res) => {
     res.render("about/about.ejs");
 })
 
-router.get("/profile", isLoggedIn, usersControllers.renderProfilePage)
+router.get("/profile/:id", isLoggedIn, usersControllers.renderProfilePage)
 
 module.exports = router;
