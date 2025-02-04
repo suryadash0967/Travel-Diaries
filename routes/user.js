@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router({mergeParams: true});
 const WrapAsync = require("../utils/WrapAsync");
 const passport = require("passport");
-const { saveRedirectUrl } = require("../middlewares.js");
+const { isLoggedIn, saveRedirectUrl } = require("../middlewares.js");
 const usersControllers = require("../controllers/users.js");
 
 
@@ -19,11 +19,13 @@ router.post("/login",
 
     WrapAsync(usersControllers.handleLogIn)
 );
+
 router.get("/logout", usersControllers.handleLogOut);
 
 router.get("/about", (req, res) => {
     res.render("about/about.ejs");
 })
 
+router.get("/profile", isLoggedIn, usersControllers.renderProfilePage)
 
 module.exports = router;

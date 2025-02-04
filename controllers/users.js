@@ -43,3 +43,7 @@ module.exports.handleLogOut = (req, res) => {
     })
 }
 
+
+module.exports.renderProfilePage = async (req, res) => {
+
+}
