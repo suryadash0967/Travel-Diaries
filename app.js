@@ -81,11 +81,11 @@ app.use((req, res, next) => {
 
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/reviews.js");
-const signupRouter = require("./routes/user.js");
+const userRouter = require("./routes/user.js");
 
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
-app.use("/", signupRouter);
+app.use("/", userRouter);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not found!"));

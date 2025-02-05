@@ -74,9 +74,11 @@
           <i class="fa-solid fa-user-circle"></i>
         </button>
         <div class="user-dropdown2">
-          <a href="/profile/<%= currUser._id %>"><i class="fa-solid fa-user"></i> Profile</a>
-          <a href="/profile#my-posts"><i class="fa-solid fa-list"></i> My Listings</a>
-          <a href="/profile#saved-posts"><i class="fa-solid fa-bookmark"></i> Saved Posts</a>
+          <% if(currUser) { %>
+            <a href="/profile/<%= currUser._id %>"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="/profile#my-posts"><i class="fa-solid fa-list"></i> My Listings</a>
+            <a href="/profile#saved-posts"><i class="fa-solid fa-bookmark"></i> Saved Posts</a>
+          <% } %>
           <a href="#"><i class="fa-solid fa-life-ring"></i> Help & Support</a>
           <a href="/profile#settings"><i class="fa-solid fa-cog"></i> Settings</a>
           <% if (!currUser) { %>
