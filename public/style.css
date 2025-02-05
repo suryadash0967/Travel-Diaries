@@ -319,9 +319,8 @@ body {
     border: none !important;
     padding: 0 !important;
     margin: 0 !important;
-    z-index: 500;
-    border: 1px solid #000;
-    position: relative;
+    position: fixed;
+    background: #fff;
 }
 
 .dropdown-menu-wrapper span:nth-of-type(1) {
