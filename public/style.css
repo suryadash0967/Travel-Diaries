@@ -751,6 +751,9 @@ body {
         flex-direction: column;
         margin: auto;
     }
+    .listing-desc-hover .interaction-buttons {
+        margin: 0 auto 0 auto;
+    }
 
     .listing-desc-hover div:nth-of-type(2) {
         width: 80%;

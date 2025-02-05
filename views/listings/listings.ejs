@@ -74,29 +74,26 @@
               <p class="popup-date"><strong>Date:</strong> <%= listing.dateBegin %> - <%= listing.dateEnd %></p>
               <p class="popup-cost"><strong>Estimated Cost:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %></p>
               <p class="popup-location"><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+              <div class="interaction-buttons" style="width: fit-content; text-align: center; display: flex; align-items: center; justify-content: center;">
+                <% if (!listing.hasLiked) { %>
+                    <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn">
+                      <i class="fa-regular fa-heart"></i> <span><%= listing.likes %></span>
+                    </button>
+                <% } else { %>
+                    <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn liked">
+                      <i class="fa-solid fa-heart"></i> <span><%= listing.likes %></span>
+                    </button>
+                <% } %>
+            
+                <p class="comment-btn" style="margin-bottom: 0;">
+                  <i class="fa-regular fa-comment"></i> <span><%= listing.reviews.length %></span>
+                </p>
+              </div>
             </div>
 
-            <div class="interaction-buttons" style="width: fit-content; text-align: center; margin: auto;">
-              <% if (!listing.hasLiked) { %>
-                <form style="background-color: #b6b6b6; border-radius: 10px;" action="/listings/<%= listing._id %>/like" method="get">
-                  <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn">
-                    <i class="fa-regular fa-heart"></i> <span><%= listing.likes %></span>
-                  </button>
-                </form>
-              <% } else { %>
-                <form style="background-color: #b6b6b6; border-radius: 10px;" action="/listings/<%= listing._id %>/like" method="get">
-                  <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn liked">
-                    <i class="fa-solid fa-heart"></i> <span><%= listing.likes %></span>
-                  </button>
-                </form>
-              <% } %>
-          
-              <a href="#all-reviews-id" class="comment-btn">
-                <i class="fa-regular fa-comment"></i> <span><%= listing.reviews.length %></span>
-              </a>
-            </div>
             
           </div>
+          
           
           <a href="/listings/<%= listing._id %>" style="text-align: center; margin: auto; color: #000; font-size: 17px; text-decoration: underline; margin: 1.5rem auto 1rem auto;" class="read-more">Expand post</a>
           <div class="cross-btn">
