@@ -76,7 +76,7 @@
               <p class="popup-location"><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
             </div>
 
-            <div class="interaction-buttons" style="margin: auto;">
+            <div class="interaction-buttons" style="width: fit-content; text-align: center; margin: auto;">
               <% if (!listing.hasLiked) { %>
                 <form style="background-color: #b6b6b6; border-radius: 10px;" action="/listings/<%= listing._id %>/like" method="get">
                   <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn">
