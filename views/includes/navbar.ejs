@@ -1,12 +1,14 @@
 <script>
   function toggleMenu() {
-    document.querySelector(".dropdown-menu").classList.toggle("show");
+    document.querySelector(".dropdown-menu-wrapper").classList.toggle("show");
     document.querySelector(".hammy").classList.toggle("show");
+    document.querySelector(".navbar-wrapper").classList.toggle("show-shadow");
   }
 
   function closeMenu() {
-    document.querySelector(".dropdown-menu").classList.remove("show");
+    document.querySelector(".dropdown-menu-wrapper").classList.remove("show");
     document.querySelector(".hammy").classList.remove("show");
+    document.querySelector(".navbar-wrapper").classList.remove("show-shadow");
   }
 
   function toggleUserMenu() {
@@ -21,7 +23,7 @@
 
   function toggleUserMenu2() {
     document.querySelector(".user-dropdown2").classList.toggle("show");
-    document.querySelector(".dropdown-menu").classList.remove("show");
+    document.querySelector(".dropdown-menu-wrapper").classList.remove("show");
     document.querySelector(".hammy").classList.remove("show");
   }
 
@@ -33,7 +35,7 @@
 </script>
 
 <nav class="navbar-head">
-  <div class="navbar-wrapper">
+  <div class="navbar-wrapper show-shadow">
     <a class="logo-icon" href="/listings">
       <i class="fa-regular fa-compass"></i>&nbsp;
       <span>Travel</span>
@@ -101,7 +103,7 @@
 
 
 
-  <div class="dropdown-menu">
+  <div class="dropdown-menu-wrapper">
     <a href="/about" onclick="closeMenu()">About Us</a>
     <a href="/listings" onclick="closeMenu()">Explore</a>
     <a href="/listings/new" onclick="closeMenu()">Share your experiences</a>
