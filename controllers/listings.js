@@ -194,7 +194,7 @@ module.exports.renderSortedPage = async (req, res) => {
     let {order} = req.query;
     let allListings = await Listing.find().populate("owner");
     if(order === "Most Liked") {
-        allListings.sort((a, b) => a.likes - b.likes);
+        allListings.sort((a, b) => b.likes - a.likes);
     } else if(order === "Most Commented") {
         allListings.sort((a, b) => b.reviews.length - a.reviews.length);
     }

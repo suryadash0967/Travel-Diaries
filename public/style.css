@@ -460,10 +460,6 @@ body {
         width: 80%;
     }
 
-    .search-listing-wrapper {
-        width: 40rem !important;
-    }
-
     .sec-navbar-wrapper {
         flex-direction: column;
     }
