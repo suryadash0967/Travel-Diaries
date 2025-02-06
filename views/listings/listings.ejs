@@ -34,6 +34,8 @@
 
     });
   });
+
+
 </script>
 
 
@@ -63,7 +65,7 @@
               <img src="<%= listing.images[0].url %>" alt="Listing Image" />
             </div>
             <div style="display: flex; flex-direction: column; justify-content: center; width: 90%;">
-              <p>
+              <p class="popup-cost">
                 <a href="/profile/<%= listing.owner._id %>" style="color: #000000; text-decoration: none; display: flex; align-items: center; gap: 5px;">
                   <i style="height: 30px; width: 30px; border: 2px solid #000000; border-radius: 50%; padding: 5px; display: flex; align-items: center; justify-content: center;" 
                     class="fa-solid fa-user"></i>
@@ -71,11 +73,12 @@
                 </a>
               </p>
               <p class="popup-desc"><strong>Description: </strong><%= listing.description %></p>
+              <p class="popup-category"><strong>Category: </strong><%= listing.category%></p>
               <p class="popup-date"><strong>Date:</strong> <%= listing.dateBegin %> - <%= listing.dateEnd %></p>
               <p class="popup-cost"><strong>Estimated Cost:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %></p>
               <p class="popup-location"><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
               <div class="interaction-buttons" style="width: fit-content; text-align: center; display: flex; align-items: center; justify-content: center;">
-                <% if (!listing.hasLiked) { %>
+                <% if (!hasUserLiked(user, listing._id)) { %>
                     <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn">
                       <i class="fa-regular fa-heart"></i> <span><%= listing.likes %></span>
                     </button>

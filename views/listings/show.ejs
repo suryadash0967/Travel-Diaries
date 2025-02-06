@@ -40,6 +40,7 @@
               </a>
             </p>
             <p><strong>Description:</strong> <%= listing.description %></p>
+            <p class="popup-category"><strong>Category: </strong><%= listing.category%></p>
             <p><strong>Date:</strong> <%= listing.dateBegin %> - <%= listing.dateEnd %></p>
             <p><strong>Estimated Cost:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %></p>
             <p><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
@@ -48,7 +49,7 @@
         <div class="action-container">
           <!-- Like & Review Section -->
           <div class="interaction-buttons">
-            <% if (!listing.hasLiked) { %>
+            <% if (!hasUserLiked(user, listing.id)) { %>
               <form style="background-color: #b6b6b6; border-radius: 10px;" action="/listings/<%= listing._id %>/like" method="get">
                 <button style="background-color: #d3d3d3; padding: 6px 12px;" class="like-btn">
                   <i class="fa-regular fa-heart"></i> <span><%= listing.likes %></span>

@@ -1,12 +1,22 @@
 const Listing = require("../model/listing.js");
+const User = require("../model/user.js");
 const cloudinary = require('cloudinary').v2;
 const date = require("date-and-time");
 
+const hasUserLiked = (user, listingId) => {
+    if(!user) return false;
+    return user.likedPosts.some(post => post.toString() === listingId.toString());
+};
+
 module.exports.index = async (req, res) => {
     let allListings = await Listing.find().populate("owner");
+    let user = req.user ? await User.findById(req.user._id.toString()) : undefined;
+
     allListings.sort((a, b) => b.likes - a.likes);
-    res.render("listings/listings.ejs", {allListings});
-}
+
+    res.render("listings/listings.ejs", { allListings, user, hasUserLiked });
+};
+
 
 module.exports.renderNewForm = async (req, res) => {
     res.render("listings/create.ejs");
@@ -20,12 +30,13 @@ module.exports.showListing = async (req, res) => {
             path: "author",
         },
     });
+    let user = req.user ? await User.findById(req.user._id.toString()) : undefined;
 
     if(!listing) {
         req.flash("error", "Listing you requested does not exist!");
         res.redirect("/listings");
     }
-    res.render("listings/show.ejs", {listing});
+    res.render("listings/show.ejs", {listing, user, hasUserLiked});
 }
 
 module.exports.createNewListing = async (req, res, next) => {
@@ -192,14 +203,14 @@ module.exports.renderShortlistedPage = async (req, res) => {
 
 module.exports.renderSortedPage = async (req, res) => {
     let {order} = req.query;
+    let user = req.user ? await User.findById(req.user._id.toString()) : undefined;
     let allListings = await Listing.find().populate("owner");
     if(order === "Most Liked") {
         allListings.sort((a, b) => b.likes - a.likes);
     } else if(order === "Most Commented") {
         allListings.sort((a, b) => b.reviews.length - a.reviews.length);
     }
-    console.log(allListings)
-    res.render("listings/listings.ejs", {allListings});
+    res.render("listings/listings.ejs", {allListings, user, hasUserLiked});
 }
 
 
@@ -236,17 +247,21 @@ module.exports.handleImageDelete = async (req, res) => {
     res.redirect(`/listings/${id}`);
 }
 
+
+
 module.exports.likeListing = async (req, res) => {
     let {id} = req.params;
     let listing = await Listing.findById(id);
-    if(!listing.hasLiked) {
+    let user = req.user ? await User.findById(req.user._id.toString()) : undefined;
+    if(!hasUserLiked(user, id)) {
         listing.likes++;
-        listing.hasLiked = true;
-        await listing.save();
+        user.likedPosts.push(listing);
     } else {
         listing.likes--;
+        user.likedPosts = user.likedPosts.filter(post => post._id.toString() !== id)
         listing.hasLiked = false;
-        await listing.save();
     }
+    await listing.save();
+    await user.save();
     res.redirect(`/listings/${id}`);
 }

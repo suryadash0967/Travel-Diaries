@@ -11,7 +11,6 @@ async function main() {
 }
 
 
-
 const listingSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -41,10 +40,6 @@ const listingSchema = new mongoose.Schema({
     likes: {
         type: Number,
         default: 0,
-    },
-    hasLiked: {
-        type: Boolean,
-        default: false,
     },
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
