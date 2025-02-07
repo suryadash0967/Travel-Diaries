@@ -1,19 +1,19 @@
 const listings = [
-    {
-      title: "Spring Fest '25",
-      description:
-        "Spring Fest 2025 at IIT Kharagpur is a thrilling mix of music, art, and cultural energy. Must-try: live concerts, street food, and creative workshops. Best for groups, but solo and couple travelers will enjoy the vibrant atmosphere too!",
-      dateBegin: 'Jan 24 2024',
-      dateEnd: 'Jan 27 2024',
-      images: [{
-        url: "https://res.cloudinary.com/dzkuia4lg/image/upload/v1738876668/traveldiaries_DEV/qinoefxv7ges9tnp6il5.jpg",
-        filename: "lisitngimage",
-      }],
-      price: 3500,
-      location: "Kharagpur",
-      country: "India",
-      category: "College & Educational Events"
-    },
+    // {
+    //   title: "Spring Fest '25",
+    //   description:
+    //     "Spring Fest 2025 at IIT Kharagpur is a thrilling mix of music, art, and cultural energy. Must-try: live concerts, street food, and creative workshops. Best for groups, but solo and couple travelers will enjoy the vibrant atmosphere too!",
+    //   dateBegin: 'Jan 24 2024',
+    //   dateEnd: 'Jan 27 2024',
+    //   images: [{
+    //     url: "https://res.cloudinary.com/dzkuia4lg/image/upload/v1738876668/traveldiaries_DEV/qinoefxv7ges9tnp6il5.jpg",
+    //     filename: "lisitngimage",
+    //   }],
+    //   price: 3500,
+    //   location: "Kharagpur",
+    //   country: "India",
+    //   category: "College & Educational Events"
+    // },
     {
       title: "Cozy Beachfront Cottage",
       description:

@@ -151,7 +151,10 @@ module.exports.deleteListing = async (req, res) => {
     if (listing.images.length > 0) {
         for (const image of listing.images) {
             try {
-                await cloudinary.uploader.destroy(image.filename.split('.')[0]);
+                for(let image of listing.images) {
+                    cloudinary.api.delete_resources([image.filename], { type: 'upload', resource_type: 'image' })
+                    .then(console.log);
+                }
             } catch (err) {
                 console.error(`Failed to delete image: ${image.public_id}`, err);
             }
@@ -218,6 +221,7 @@ module.exports.handleImageDelete = async (req, res) => {
     let {id, index} = req.params;
     index = parseInt(index, 10);
     let listing = await Listing.findById(id);
+    console.log(listing.images)
 
     if (!listing) {
         req.flash("error", "Listing not found!");
@@ -234,7 +238,8 @@ module.exports.handleImageDelete = async (req, res) => {
         let image = listing.images[index];
 
         try {
-            await cloudinary.uploader.destroy(image.filename.split('.')[0]);
+            cloudinary.api.delete_resources([image.filename], { type: 'upload', resource_type: 'image' })
+            .then(console.log);
         } catch (err) {
             console.error(`Failed to delete image: ${image.filename}`, err);
         }
