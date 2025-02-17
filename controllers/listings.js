@@ -130,7 +130,10 @@ module.exports.updateListing = async (req, res) => {
     if (totalImages.length > 15) {
         const imagesToRemove = totalImages.slice(15);
         for (const image of imagesToRemove) {
-            await cloudinary.uploader.destroy(image.filename.split('.')[0]);
+            cloudinary.api.delete_resources(
+                [image.filename],
+                { type: 'upload', resource_type: 'image' }
+            ).then(console.log);
         }
     }
 
@@ -152,8 +155,10 @@ module.exports.deleteListing = async (req, res) => {
         for (const image of listing.images) {
             try {
                 for(let image of listing.images) {
-                    cloudinary.api.delete_resources([image.filename], { type: 'upload', resource_type: 'image' })
-                    .then(console.log);
+                    cloudinary.api.delete_resources(
+                        [image.filename],
+                        { type: 'upload', resource_type: 'image' }
+                    ).then(console.log);
                 }
             } catch (err) {
                 console.error(`Failed to delete image: ${image.public_id}`, err);
@@ -238,8 +243,10 @@ module.exports.handleImageDelete = async (req, res) => {
         let image = listing.images[index];
 
         try {
-            cloudinary.api.delete_resources([image.filename], { type: 'upload', resource_type: 'image' })
-            .then(console.log);
+            cloudinary.api.delete_resources(
+                [image.filename],
+                { type: 'upload', resource_type: 'image' }
+            ).then(console.log);
         } catch (err) {
             console.error(`Failed to delete image: ${image.filename}`, err);
         }
@@ -263,7 +270,7 @@ module.exports.likeListing = async (req, res) => {
         user.likedPosts.push(listing);
     } else {
         listing.likes--;
-        user.likedPosts = user.likedPosts.filter(post => post._id.toString() !== id)
+        user.likedPosts = user.likedPosts.filter(post => post._id.toString() !== id);
         listing.hasLiked = false;
     }
     await listing.save();
