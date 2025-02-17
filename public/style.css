@@ -663,6 +663,17 @@ body {
     width: 83%;
 }
 
+.hover-popup > h4 > div {
+    width: 25rem;
+}
+
+
+@media (max-width: 745px) {
+    .hover-popup > h4 > div {
+        width: 15rem;
+    }
+}
+
 
 
 .listing-desc-hover {
